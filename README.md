@@ -37,14 +37,58 @@
 
 ```toml
 [dependencies]
-token-lang = "0.1"
+token-lang = "0.2"
 ```
+
+<br>
+
+## Usage
+
+A language defines its own token *kind*; token-lang pairs it with a `Span` and lets
+generic code classify the stream.
+
+```rust
+use token_lang::{Span, Token, TokenKind};
+
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+enum Kind {
+    Ident,
+    Plus,
+    Whitespace,
+    Eof,
+}
+
+impl TokenKind for Kind {
+    fn is_trivia(&self) -> bool {
+        matches!(self, Kind::Whitespace)
+    }
+    fn is_eof(&self) -> bool {
+        matches!(self, Kind::Eof)
+    }
+}
+
+let tokens = [
+    Token::new(Kind::Ident, Span::new(0, 1)),
+    Token::new(Kind::Whitespace, Span::new(1, 2)),
+    Token::new(Kind::Plus, Span::new(2, 3)),
+    Token::new(Kind::Eof, Span::empty(3)),
+];
+
+// A parser skips trivia and stops at the end — without knowing the language.
+let significant = tokens.iter().filter(|t| !t.is_trivia() && !t.is_eof()).count();
+assert_eq!(significant, 2);
+```
+
+See <a href="./docs/API.md"><code>docs/API.md</code></a> for the full surface.
 
 <br>
 
 ## Status
 
-This is the <code>v0.1.0</code> scaffold: structure, tooling, and quality gates are in place; the implementation lands across the 0.x series per the <a href="./dev/ROADMAP.md"><code>ROADMAP</code></a> and <a href="./docs/API.md"><code>docs/API.md</code></a>.
+<strong>Status: pre-1.0, in active development.</strong> The <code>v0.2.0</code>
+release lands the core — the `Token` type and the `TokenKind` seam. The public API
+is being finalized across the 0.x series and frozen at <code>1.0.0</code>; see the
+<a href="./dev/ROADMAP.md"><code>ROADMAP</code></a> and <a href="./docs/API.md"><code>docs/API.md</code></a>.
 
 <hr>
 <br>

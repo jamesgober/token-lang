@@ -11,13 +11,38 @@
 
 ## [Unreleased]
 
+## [0.2.0] - 2026-06-20
+
+The core: the token type and the lexer↔parser seam. Wires `span-lang` and
+`intern-lang`, the first phase with domain logic.
+
 ### Added
+
+- `Token<K>` — a language-specific kind paired with the `Span` of source it covers.
+  Construction (`new`), accessors (`kind`, `span`, `into_kind`), `map` for rewriting
+  the kind while keeping the span, and `as_ref`. `Copy` when `K` is; orders by span
+  first so a stream sorts into source order; `Display` as `kind @ start..end`.
+- `TokenKind` — the classification trait a language implements for its kind:
+  `is_trivia`, `is_eof`, and `symbol` (returning the interned lexeme as a `Symbol`),
+  all default-implemented so an empty `impl` works. `Token` forwards all three when
+  `K: TokenKind`.
+- `From` conversions between `Token<K>`, `span-lang`'s `Spanned<K>`, and `(K, Span)`.
+- Re-exports of `Span`, `Spanned` (`span-lang`) and `Symbol` (`intern-lang`).
+- `serde` feature: derives `Serialize`/`Deserialize` for `Token`, forwarded to the
+  dependency types.
+- Property tests for the documented invariants, integration and serde tests, and
+  Criterion benchmarks for the parser-side hot paths.
+- `dev/DIRECTIVES.md` and `docs/API.md`.
 
 ### Changed
 
+- Aligned `clippy.toml` MSRV to Rust 1.85 (matching `Cargo.toml` and the sibling
+  crates).
+
 ### Fixed
 
-### Security
+- `Cargo.toml` `keywords` and `categories` were unquoted bare words — invalid TOML
+  that prevented the crate from building; they are now quoted strings.
 
 ---
 
@@ -34,5 +59,6 @@ Initial scaffold and repository bootstrap. No domain logic yet &mdash; this rele
 - `.github/workflows/ci.yml` CI matrix; `deny.toml`, `clippy.toml`, `rustfmt.toml`.
 - `dev/DIRECTIVES.md` and `dev/ROADMAP.md` (committed engineering standards + plan).
 
-[Unreleased]: https://github.com/jamesgober/token-lang/compare/v0.1.0...HEAD
+[Unreleased]: https://github.com/jamesgober/token-lang/compare/v0.2.0...HEAD
+[0.2.0]: https://github.com/jamesgober/token-lang/compare/v0.1.0...v0.2.0
 [0.1.0]: https://github.com/jamesgober/token-lang/releases/tag/v0.1.0

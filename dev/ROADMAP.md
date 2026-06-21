@@ -9,12 +9,19 @@
 Compiles, CI green, structure correct, no domain logic.
 - [x] Manifest, README, CHANGELOG, REPS, dual license, CI, deny, clippy, rustfmt.
 
-## v0.2.0 - Core (THE HARD PART, NOT DEFERRED)
+## v0.2.0 - Core (DONE)
 Token kinds and the token type only, so lexer and parser stay independent of each other.
 Dependencies (wires span, intern) are wired here, when first used.
 Exit criteria:
-- [ ] Every public item has rustdoc + a runnable example.
-- [ ] Core invariants property-tested (full DIRECTIVES + API authored at this stage).
+- [x] Every public item has rustdoc + a runnable example.
+- [x] Core invariants property-tested (full DIRECTIVES + API authored at this stage).
+
+Delivered: `Token<K>` (kind + span; wires `span-lang`) and the `TokenKind` trait
+(`is_trivia` / `is_eof` / `symbol`; the last wires `intern-lang`'s `Symbol`), with
+`Token` ↔ `Spanned` conversions, source-order ordering, optional `serde`, and a
+`no_std` build. `dev/DIRECTIVES.md` and `docs/API.md` authored; property tests cover
+every section-4 invariant. See `dev/NOTES.md` for the one frozen-surface decision
+(the `symbol` accessor) awaiting sign-off before the 1.0 freeze.
 
 ## v1.0.0 - API freeze
 Public surface stable and frozen until 2.0.
