@@ -1,10 +1,27 @@
 # token-lang &mdash; API Reference
 
 > Complete reference for every public item in `token-lang`, with examples.
-> **Status: pre-1.0.** The surface below is the v0.2.0 surface and is being
-> finalized across the 0.x series; it is frozen at `1.0`. See
-> [`dev/ROADMAP.md`](../dev/ROADMAP.md) and
-> [`../../_strategy/LANG_COLLECTION.md`](https://github.com/jamesgober/token-lang).
+> **Status: stable (1.0).** The surface below is the `1.0` contract; it follows
+> [Semantic Versioning](#semver-promise) and will not change in a breaking way before
+> `2.0`. See [`dev/ROADMAP.md`](../dev/ROADMAP.md).
+
+## SemVer promise
+
+As of `1.0.0` the public API documented here is **stable**. The crate follows
+[Semantic Versioning](https://semver.org):
+
+- No item in this reference will be **removed or changed in a breaking way** within
+  the `1.x` series. Breaking changes wait for `2.0`.
+- New functionality arrives in **minor** releases (`1.1`, `1.2`, …) and is additive —
+  a new defaulted `TokenKind` method, a new `Token` helper, a new trait impl.
+- Bug fixes, documentation, and internal changes are **patch** releases.
+- The **MSRV** is Rust `1.85`. Raising it is a minor change, called out in the
+  changelog; it is never a patch.
+- The **`serde` representation** of `Token` is part of the contract: a `Token`
+  serialised by one `1.x` reads back in any later `1.x`.
+
+Anything not in this reference — exact `Debug` output, the internal module layout —
+is not part of the contract and may change at any time.
 
 ## Table of Contents
 

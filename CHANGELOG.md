@@ -11,6 +11,19 @@
 
 ## [Unreleased]
 
+## [1.0.0] - 2026-06-28
+
+API freeze. `1.0.0` declares the public surface stable under Semantic Versioning
+until `2.0`. There are no code changes from `0.2.0` — this release marks the
+contract: `Token<K>`, the `TokenKind` trait, and the re-exported coordinate and
+interning types are now stable, and no breaking change will be made without a major
+version bump.
+
+### Changed
+
+- `docs/API.md` and the crate docs now document the surface as the stable `1.0`
+  contract, with the SemVer promise recorded.
+
 ## [0.2.0] - 2026-06-20
 
 The core: the token type and the lexer↔parser seam. Wires `span-lang` and
@@ -59,6 +72,7 @@ Initial scaffold and repository bootstrap. No domain logic yet &mdash; this rele
 - `.github/workflows/ci.yml` CI matrix; `deny.toml`, `clippy.toml`, `rustfmt.toml`.
 - `dev/DIRECTIVES.md` and `dev/ROADMAP.md` (committed engineering standards + plan).
 
-[Unreleased]: https://github.com/jamesgober/token-lang/compare/v0.2.0...HEAD
+[Unreleased]: https://github.com/jamesgober/token-lang/compare/v1.0.0...HEAD
+[1.0.0]: https://github.com/jamesgober/token-lang/compare/v0.2.0...v1.0.0
 [0.2.0]: https://github.com/jamesgober/token-lang/compare/v0.1.0...v0.2.0
 [0.1.0]: https://github.com/jamesgober/token-lang/releases/tag/v0.1.0

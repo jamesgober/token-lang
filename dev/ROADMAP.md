@@ -23,7 +23,11 @@ Delivered: `Token<K>` (kind + span; wires `span-lang`) and the `TokenKind` trait
 every section-4 invariant. See `dev/NOTES.md` for the one frozen-surface decision
 (the `symbol` accessor) awaiting sign-off before the 1.0 freeze.
 
-## v1.0.0 - API freeze
+## v1.0.0 - API freeze (DONE)
 Public surface stable and frozen until 2.0.
-- [ ] docs/API.md marked stable; SemVer promise recorded.
-- [ ] Full test + benchmark suite green on all three platforms.
+- [x] docs/API.md marked stable; SemVer promise recorded.
+- [x] Full test + benchmark suite green on all three platforms.
+
+No code changes from v0.2.0 — the freeze marks the contract. The `symbol` accessor
+decision resolved as option A (kept on `TokenKind`) and is now part of the stable
+1.0 surface.

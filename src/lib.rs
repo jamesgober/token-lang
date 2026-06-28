@@ -73,6 +73,13 @@
 //! trait need neither the standard library nor `alloc`. The default `std` feature
 //! is additive and only forwards to the standard-library builds of the coordinate
 //! and interning crates. Disable default features to build for a `no_std` target.
+//!
+//! ## Stability
+//!
+//! As of `1.0.0` the public surface is **stable** and follows Semantic Versioning:
+//! no breaking changes before `2.0`, additions arrive in minor releases, and the
+//! MSRV (Rust 1.85) only rises in a minor. The frozen surface is catalogued in
+//! [`docs/API.md`](https://github.com/jamesgober/token-lang/blob/main/docs/API.md).
 
 #![cfg_attr(not(feature = "std"), no_std)]
 #![cfg_attr(docsrs, feature(doc_cfg))]
