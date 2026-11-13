@@ -18,7 +18,7 @@
 
 <div align="left">
     <p>
-        token-lang is the BASE-tier crate that follows: Token kinds and the token type only, so lexer and parser stay independent of each other. Part of the -lang language-construction family; see _strategy/LANG_COLLECTION.md for the master plan.
+        token-lang is the BASE-tier crate that follows: Token kinds and the token type only, so lexer and parser stay independent of each other. Part of the -lang language-construction family.
     </p>
     <br>
     <hr>
